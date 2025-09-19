@@ -16,8 +16,8 @@
 ##  Descripción de los datos a usar
 
 * **Dataset principal:** Stress and Sleep Patterns
-* **Enlace:** [https://www.kaggle.com/datasets/uom190346a/sleep-and-stress](https://www.kaggle.com/datasets/uom190346a/sleep-and-stress)
-* **Cantidad de datos:** \~500 registros, variables relacionadas con hábitos de sueño, niveles de estrés, actividad física, uso de dispositivos y rendimiento académico.
+* **Enlace:** https://data.mendeley.com/datasets/5mvrx4v62z/3
+* **Cantidad de datos:** \~El conjunto de datos consta de 16 columnas en formatos categóricos u ordinales. Contiene 785 filas sin datos faltantes, lo que lo prepara para aplicaciones de análisis y aprendizaje automático.
 * **Posibles datasets complementarios:** Se evaluarán otras fuentes que incluyan variables adicionales como uso de pantallas antes de dormir o frecuencia de ejercicio.
 
 ---
