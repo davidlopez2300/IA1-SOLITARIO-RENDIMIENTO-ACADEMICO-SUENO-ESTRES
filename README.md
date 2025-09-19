@@ -1,24 +1,19 @@
-¡Perfecto! 🙌 Lo que necesitas es un **README.md bien estructurado** que cumpla exactamente con lo que pide tu profe, pero además adaptado al enfoque que definimos: **predicción del rendimiento académico a partir de horas de sueño y estrés percibido**, usando principalmente el dataset **Stress and Sleep Patterns**, con posibilidad de integrar otros datasets que aporten variables adicionales (uso de pantallas, ejercicio, etc.).
 
-Aquí te propongo un borrador inicial de tu `README.md`:
-
----
 
 # Proyecto: Análisis y Predicción del Rendimiento Académico en Estudiantes Universitarios a partir de Patrones de Sueño y Estrés
 
 ### Identificación del proyecto
 
 * **Curso:** Inteligencia Artificial I – 2025-2 C1
-* **Equipo:** \[Nombre del equipo]
+* **Equipo:** Solitario
 * **Integrantes:**
 
-  * Estudiante 1 – Código UIS: XXXXX
-  * Estudiante 2 – Código UIS: XXXXX
-  * Estudiante 3 – Código UIS: XXXXX
+  * Juan david Lopez Ruiz – Código UIS: 2180645
+  
 
 ---
 
-## 📊 Descripción de los datos a usar
+##  Descripción de los datos a usar
 
 * **Dataset principal:** Stress and Sleep Patterns
 * **Enlace:** [https://www.kaggle.com/datasets/uom190346a/sleep-and-stress](https://www.kaggle.com/datasets/uom190346a/sleep-and-stress)
@@ -27,7 +22,7 @@ Aquí te propongo un borrador inicial de tu `README.md`:
 
 ---
 
-## ❓ Preguntas a responder
+##  Preguntas a responder
 
 ### Antes del EDA (conceptual)
 
@@ -58,6 +53,4 @@ Se identifican posibles valores faltantes o inconsistentes en las variables auto
 
 ---
 
-👉 Con esto ya tienes un **README base bien estructurado** para tu repositorio.
 
-¿Quieres que te lo deje listo directamente en un archivo **`README.md` descargable**, o prefieres que te lo organice primero en formato **Word (.docx)** para revisión antes de pasarlo al repo?
