@@ -8,7 +8,7 @@
 * **Equipo:** Solitario
 * **Integrantes:**
 
-  * Juan david Lopez Ruiz – Código UIS: 2180645
+  * Juan David Lopez Ruiz – Código UIS: 2180645
   
 
 ---
