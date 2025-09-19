@@ -17,7 +17,7 @@
 
 * **Dataset principal:** Stress and Sleep Patterns
 * **Enlace:** https://data.mendeley.com/datasets/5mvrx4v62z/3
-* **Cantidad de datos:** El conjunto de datos consta de 16 columnas en formatos categóricos u ordinales. Contiene 785 filas sin datos faltantes, lo que lo prepara para aplicaciones de análisis y aprendizaje automático.
+* **Cantidad de datos:** El conjunto de datos consta de 16 columnas en formatos categóricos u ordinales. Contiene mas de 900 filas sin datos faltantes, lo que lo prepara para aplicaciones de análisis y aprendizaje automático.
 * **Posibles datasets complementarios:** Se evaluarán otras fuentes que incluyan variables adicionales como uso de pantallas antes de dormir o frecuencia de ejercicio.
 
 ---
