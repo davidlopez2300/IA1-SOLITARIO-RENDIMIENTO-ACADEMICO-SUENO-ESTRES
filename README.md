@@ -24,7 +24,7 @@
 
 ---
 
-## ❓ Preguntas a Responder
+## Preguntas a Responder
 
 ### Antes del EDA (Conceptual y Metodológico)
 
@@ -37,33 +37,52 @@
 
 ---
 
-### Después del EDA y Modelado (Basado en Datos)
+# 📚 Bitácora Metodológica del Proyecto: Predicción del Rendimiento Académico
 
-#### 1. Información Clave Contenida en los Datos (Hallazgos EDA)
+Este documento resume las fases clave y las decisiones metodológicas tomadas en el desarrollo del modelo de Machine Learning para predecir el rendimiento académico (Bajo, Medio, Alto) a partir de los hábitos diarios del estudiante.
 
-El análisis exploratorio reveló las siguientes correlaciones con la variable objetivo `Performance_Level`:
-
-* **Estudio y Rendimiento:** Existe una **fuerte correlación positiva**. La mediana de **`study_hours_per_day`** aumenta progresivamente del nivel Bajo al Alto.
-* **Distracción Digital:** Hay una **clara correlación negativa** con el uso de redes sociales (`social_media_hours`). Los estudiantes de bajo rendimiento tienen consistentemente las medianas de uso de redes sociales más altas.
-* **Bienestar:** La calidad del sueño (`sleep_hours`) y la calidad de la dieta (`diet_quality`) se correlacionan positivamente con el rendimiento Alto. La participación extracurricular también está más equilibrada en los grupos Medio y Alto, sugiriendo una buena gestión del tiempo.
-
-#### 2. Desafíos Asociados a los Datos y al Modelado
-
-* **Clasificación Media (Clase 1):** El principal desafío del modelo multiclase es la predicción del nivel **Medio (1)**. Esta clase tiene una menor Precisión (`Precision` < 0.70 en el modelo base) debido a que sus patrones de hábitos se superponen con los límites de las clases Bajo y Alto.
-* **Sesgo en Variables Auto-Reportadas:** La precisión de variables como `mental_health_rating` o `diet_quality` depende del reporte honesto del estudiante, lo que puede introducir ruido o sesgo.
-
-#### 3. Metodología de Machine Learning y Resultados
-
-* **Modelo Elegido:** **Random Forest Classifier (Clasificación Multiclase)**.
-    * **Justificación:** El Random Forest es robusto, maneja bien datos mixtos (categóricos y numéricos), y proporciona la **importancia de las características** para justificar las intervenciones.
-* **Optimización:** Se aplicó **Grid Search** para afinar hiperparámetros (`n_estimators`, `max_depth`, etc.) y mejorar el rendimiento.
-* **Métrica de Éxito:** El modelo fue optimizado para maximizar el `Accuracy` general y el `F1-score` de la clase **Medio (1)**.
-
-| Modelo | Precisión Base (Accuracy) | Precisión Optimizada (Accuracy) |
-| :--- | :--- | :--- |
-| **Random Forest** | 0.7867 | *[Aquí se pondrá el resultado final de tu Grid Search]* |
-
-* **Próximo Paso:** Una vez ejecutada la optimización, se actualizará el campo de Precisión Optimizada y se analizarán las variables de **Feature Importance** para comunicar a la comunidad académica cuáles son los hábitos con mayor impacto predictivo.
 ---
+
+### I. 🎯 Definición del Problema y Preparación de Datos
+
+Se optó por un enfoque de **Clasificación Multiclase** por su **utilidad práctica** para la intervención académica, siendo más valioso conocer la categoría de riesgo (Bajo/Medio/Alto) que un puntaje exacto.
+
+1.  **Variable Objetivo:** La variable continua `exam_score` se transformó en `performance_level` (0, 1, 2) usando los **percentiles 33% y 66%** para asegurar un balance equitativo de clases.
+2.  **Calidad de Datos:** Se confirmó la ausencia total de valores nulos y se procedió a la eliminación del identificador `student_id`.
+3.  **Preprocesamiento:** Se aplicó **One-Hot Encoding (OHE)** a todas las variables categóricas. Los datos fueron divididos en conjuntos de Entrenamiento y Prueba (70/30) utilizando `stratify=y` para mantener el balance de clases en ambos subconjuntos.
+
+---
+
+### II. 🔎 Análisis Exploratorio de Datos (EDA)
+
+El análisis visual confirmó las hipótesis iniciales sobre la relación entre hábitos y rendimiento:
+
+* **Impacto Positivo:** El **Heatmap** y los diagramas de caja confirmaron que **`study_hours_per_day`** y **`attendance_percentage`** son los predictores positivos más fuertes.
+* **Factores de Riesgo:** El **Diagrama de Dispersión** demostró que los estudiantes de rendimiento **Bajo (0)** se agrupan consistentemente en áreas de **Bajas Horas de Estudio y Altas Horas de Redes Sociales**.
+* **Zona de Error:** La clase **Medio (1)** se localiza en la zona central de superposición, siendo el principal desafío para la clasificación.
+
+---
+
+### III. 🌳 Modelado y Optimización
+
+Se eligió el **Random Forest Classifier** por su robustez ante datos mixtos y su capacidad de interpretar la importancia de las características.
+
+#### A. Flujo de Modelado
+
+| Paso | Propósito |
+| :--- | :--- |
+| **Modelo Base** | Entrenado con parámetros por defecto (`n_estimators=100`) para establecer un rendimiento inicial (Accuracy inicial **~0.7867**). |
+| **Optimización** | Se implementó **Grid Search (`GridSearchCV`)** para realizar una búsqueda exhaustiva de la mejor combinación de hiperparámetros (`max_depth`, `n_estimators`, etc.) y maximizar el rendimiento general y el F1-score de la clase **Medio (1)**. |
+| **Validación** | El modelo optimizado fue sometido a análisis de **Matriz de Confusión** y **Curvas ROC/AUC** para medir su capacidad discriminatoria y diagnosticar fallos en la predicción de la clase **Medio (1)**. |
+
+#### B. Interpretación de Resultados
+
+* **Matriz de Confusión:** Reveló que el error más frecuente es clasificar erróneamente a estudiantes **Medios (1)** como **Bajos (0)**, lo cual es crítico pero esperable dada la ambigüedad de la zona central.
+* **Importancia de Variables:** Los principales impulsores predictivos del modelo son:
+    1.  **`study_hours_per_day`** (Mayor influencia).
+    2.  **`social_media_hours`** (Impacto negativo).
+    3.  **`sleep_hours`** (Factor clave de bienestar).
+
+Esta metodología asegura que el modelo no solo sea preciso, sino también **interpretable**, ofreciendo justificación clara para las estrategias de intervención académica.
 
 
