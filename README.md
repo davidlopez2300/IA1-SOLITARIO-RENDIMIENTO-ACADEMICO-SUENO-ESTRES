@@ -37,13 +37,13 @@
 
 ---
 
-# 📚 Bitácora Metodológica del Proyecto: Predicción del Rendimiento Académico
+# Metodológica del Proyecto: Predicción del Rendimiento Académico
 
 Este documento resume las fases clave y las decisiones metodológicas tomadas en el desarrollo del modelo de Machine Learning para predecir el rendimiento académico (Bajo, Medio, Alto) a partir de los hábitos diarios del estudiante.
 
 ---
 
-### I. 🎯 Definición del Problema y Preparación de Datos
+### I.  Definición del Problema y Preparación de Datos
 
 Se optó por un enfoque de **Clasificación Multiclase** por su **utilidad práctica** para la intervención académica, siendo más valioso conocer la categoría de riesgo (Bajo/Medio/Alto) que un puntaje exacto.
 
@@ -53,7 +53,7 @@ Se optó por un enfoque de **Clasificación Multiclase** por su **utilidad prác
 
 ---
 
-### II. 🔎 Análisis Exploratorio de Datos (EDA)
+### II.  Análisis Exploratorio de Datos (EDA)
 
 El análisis visual confirmó las hipótesis iniciales sobre la relación entre hábitos y rendimiento:
 
@@ -63,7 +63,7 @@ El análisis visual confirmó las hipótesis iniciales sobre la relación entre 
 
 ---
 
-### III. 🌳 Modelado y Optimización
+### III.  Modelado y Optimización
 
 Se eligió el **Random Forest Classifier** por su robustez ante datos mixtos y su capacidad de interpretar la importancia de las características.
 
