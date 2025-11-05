@@ -13,9 +13,6 @@
 
 ---
 
-##  Descripción de los datos a usar
-
-
 ## Descripción de los Datos a Usar
 
 **Dataset Principal:** `student_habits_performance.csv` (Derivado de fuentes académicas similares a "Stress and Sleep Patterns").
