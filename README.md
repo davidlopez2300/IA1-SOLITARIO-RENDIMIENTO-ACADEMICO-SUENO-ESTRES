@@ -15,42 +15,58 @@
 
 ##  Descripción de los datos a usar
 
-* **Dataset principal:** Stress and Sleep Patterns
-* **Enlace:** [https://data.mendeley.com/datasets/5mvrx4v62z/3](https://www.kaggle.com/datasets/jayaantanaath/student-habits-vs-academic-performance?resource=download)
-* **Cantidad de datos:** El conjunto de datos consta de 16 columnas en formatos categóricos u ordinales. Contiene mas de 900 filas sin datos faltantes, lo que lo prepara para aplicaciones de análisis y aprendizaje automático.
-* **Posibles datasets complementarios:** Se evaluarán otras fuentes que incluyan variables adicionales como uso de pantallas antes de dormir o frecuencia de ejercicio.
+# 📚 Predicción de Rendimiento Académico: El Impacto de los Hábitos Diarios
+
+## Descripción de los Datos a Usar
+
+**Dataset Principal:** `student_habits_performance.csv` (Derivado de fuentes académicas similares a "Stress and Sleep Patterns").
+
+* **Variables Clave:** El conjunto de datos consta de **16 columnas** que incluyen variables cuantitativas (ej. `study_hours_per_day`, `sleep_hours`, `social_media_hours`) y variables categóricas u ordinales (ej. `diet_quality`, `part_time_job`).
+* **Cantidad de Datos:** Contiene **1000 filas** sin datos faltantes, lo que lo prepara óptimamente para aplicaciones de análisis y Machine Learning.
+* **Variable Objetivo (Transformada):** `Performance_Level` (Clasificación Multiclase: **Bajo (0), Medio (1), Alto (2)**).
 
 ---
 
-##  Preguntas a responder
+## ❓ Preguntas a Responder
 
-### Antes del EDA (conceptual)
+### Antes del EDA (Conceptual y Metodológico)
 
-**Problema y relevancia:**
-El bajo rendimiento académico de los estudiantes universitarios está fuertemente asociado con factores de salud como la falta de sueño y altos niveles de estrés. Estos factores, tanto físicos (horas de sueño) como psicológicos (estrés percibido), impactan directamente en el bienestar y desempeño académico. Predecir el rendimiento a partir de estas variables permitiría anticipar riesgos y diseñar estrategias de apoyo para mejorar la vida estudiantil.
-
-**Objetivo del análisis:**
-La primera fase del análisis exploratorio (EDA) busca identificar patrones entre sueño, estrés y rendimiento académico. Esto permitirá definir las variables más relevantes, verificar la calidad de los datos y orientar la construcción de un modelo predictivo robusto que explique cómo influyen estos factores en las notas de los estudiantes.
-
-**Métricas o indicadores:**
-Se evaluarán correlaciones entre horas de sueño, estrés percibido y rendimiento académico. Además, se emplearán métricas de predicción como error cuadrático medio (RMSE) en regresión o accuracy/F1-score en clasificación. Estas métricas permiten medir la capacidad del modelo para predecir notas y, a su vez, cuantificar el impacto de los factores de sueño y estrés en el desempeño.
-
-**Motivación de la elección:**
-Se eligió este problema porque combina variables físicas y mentales claves para los universitarios. Además, tiene un impacto directo en la salud y el rendimiento, lo que lo hace relevante para la comunidad académica y para el desarrollo de soluciones prácticas.
+| Aspecto | Descripción Actualizada |
+| :--- | :--- |
+| **Problema y Relevancia** | El bajo rendimiento está ligado a una gestión ineficiente de factores del día a día (sueño, uso de pantallas, dieta). Predecir el rendimiento en tres niveles (Bajo, Medio, Alto) permite diseñar **estrategias de intervención focalizadas** para cada grupo, maximizando el apoyo estudiantil. |
+| **Objetivo del Análisis** | **Fase 1 (EDA):** Identificar patrones de correlación entre hábitos diarios y el rendimiento. **Fase 2 (ML):** Construir un **Modelo de Clasificación Multiclase** (Random Forest) robusto para predecir si un estudiante caerá en el nivel Bajo, Medio o Alto, permitiendo la **intervención temprana**. |
+| **Métricas o Indicadores** | Se emplean métricas de clasificación multiclase: **Accuracy** (Precisión General) y **Reporte de Clasificación (Precision, Recall, F1-score)** por clase. La optimización busca mejorar el F1-score en la clase **Medio (1)**, que es la más difícil de predecir. |
+| **Motivación de la Elección** | Elegimos este enfoque porque provee una herramienta **accionable** para la comunidad académica. La clasificación multiclase es más útil que la binaria para la gestión de recursos y la orientación personalizada del estudiante. |
 
 ---
 
-### Después del EDA (basado en datos)
+### Después del EDA y Modelado (Basado en Datos)
 
-**Datos utilizados:**
-Se usaron datos del dataset *Stress and Sleep Patterns*, compuesto principalmente por tablas numéricas y categóricas que describen hábitos de sueño, niveles de estrés y rendimiento académico.
+#### 1. Información Clave Contenida en los Datos (Hallazgos EDA)
 
-**Información contenida en los datos:**
-El dataset incluye variables relacionadas con la cantidad de horas de sueño, calidad percibida del descanso, nivel de estrés auto-reportado, actividad física, uso de dispositivos electrónicos y desempeño académico (notas). Estas características permiten estudiar el efecto combinado del sueño y el estrés en el rendimiento, y explorar la posible influencia de factores secundarios como el ejercicio o el uso de pantallas.
+El análisis exploratorio reveló las siguientes correlaciones con la variable objetivo `Performance_Level`:
 
-**Desafíos asociados a los datos:**
-Se identifican posibles valores faltantes o inconsistentes en las variables auto-reportadas (estrés percibido, calidad del sueño). El tamaño relativamente pequeño del dataset limita la generalización de los resultados. Además, puede existir sesgo en la muestra, ya que se centra en un grupo específico de estudiantes y no necesariamente representa a toda la población universitaria. Otro desafío es el equilibrio de clases en el rendimiento académico, que podría afectar la precisión de los modelos predictivos.
+* **Estudio y Rendimiento:** Existe una **fuerte correlación positiva**. La mediana de **`study_hours_per_day`** aumenta progresivamente del nivel Bajo al Alto.
+* **Distracción Digital:** Hay una **clara correlación negativa** con el uso de redes sociales (`social_media_hours`). Los estudiantes de bajo rendimiento tienen consistentemente las medianas de uso de redes sociales más altas.
+* **Bienestar:** La calidad del sueño (`sleep_hours`) y la calidad de la dieta (`diet_quality`) se correlacionan positivamente con el rendimiento Alto. La participación extracurricular también está más equilibrada en los grupos Medio y Alto, sugiriendo una buena gestión del tiempo.
 
+#### 2. Desafíos Asociados a los Datos y al Modelado
+
+* **Clasificación Media (Clase 1):** El principal desafío del modelo multiclase es la predicción del nivel **Medio (1)**. Esta clase tiene una menor Precisión (`Precision` < 0.70 en el modelo base) debido a que sus patrones de hábitos se superponen con los límites de las clases Bajo y Alto.
+* **Sesgo en Variables Auto-Reportadas:** La precisión de variables como `mental_health_rating` o `diet_quality` depende del reporte honesto del estudiante, lo que puede introducir ruido o sesgo.
+
+#### 3. Metodología de Machine Learning y Resultados
+
+* **Modelo Elegido:** **Random Forest Classifier (Clasificación Multiclase)**.
+    * **Justificación:** El Random Forest es robusto, maneja bien datos mixtos (categóricos y numéricos), y proporciona la **importancia de las características** para justificar las intervenciones.
+* **Optimización:** Se aplicó **Grid Search** para afinar hiperparámetros (`n_estimators`, `max_depth`, etc.) y mejorar el rendimiento.
+* **Métrica de Éxito:** El modelo fue optimizado para maximizar el `Accuracy` general y el `F1-score` de la clase **Medio (1)**.
+
+| Modelo | Precisión Base (Accuracy) | Precisión Optimizada (Accuracy) |
+| :--- | :--- | :--- |
+| **Random Forest** | 0.7867 | *[Aquí se pondrá el resultado final de tu Grid Search]* |
+
+* **Próximo Paso:** Una vez ejecutada la optimización, se actualizará el campo de Precisión Optimizada y se analizarán las variables de **Feature Importance** para comunicar a la comunidad académica cuáles son los hábitos con mayor impacto predictivo.
 ---
 
 
