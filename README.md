@@ -1,6 +1,6 @@
 
 
-# Proyecto: Análisis y Predicción del Rendimiento Académico en Estudiantes Universitarios a partir de Patrones de Sueño y Estrés
+# Proyecto: Análisis y Predicción de Rendimiento Académico: El Impacto de los Hábitos Diarios
 
 ### Identificación del proyecto
 
@@ -15,7 +15,6 @@
 
 ##  Descripción de los datos a usar
 
-# 📚 Predicción de Rendimiento Académico: El Impacto de los Hábitos Diarios
 
 ## Descripción de los Datos a Usar
 
