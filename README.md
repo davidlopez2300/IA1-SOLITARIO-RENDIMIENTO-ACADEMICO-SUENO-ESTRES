@@ -87,4 +87,100 @@ Se eligió el **Random Forest Classifier** por su robustez ante datos mixtos y s
 
 Esta metodología asegura que el modelo no solo sea preciso, sino también **interpretable**, ofreciendo justificación clara para las estrategias de intervención académica.
 
+---
+
+## IV. Aprendizaje No Supervisado: Descubrimiento de Patrones Latentes
+
+Una vez construidos y evaluados los modelos supervisados de predicción del rendimiento académico, se desarrolló una fase complementaria de **Aprendizaje No Supervisado**, cuyo objetivo fue identificar **patrones naturales** en los estudiantes sin utilizar etiquetas. Esta fase no pretende predecir rendimiento, sino **descubrir perfiles** que permitan entender mejor cómo se agrupan los estudiantes según sus hábitos, sueño y bienestar general.
+
+### 1. Propósito del Análisis No Supervisado
+
+El objetivo principal fue determinar si las variables de hábitos diarios y bienestar son capaces de formar **clusters coherentes**, es decir, grupos de estudiantes con características similares que puedan relacionarse indirectamente con los niveles de rendimiento académico observados.
+
+Específicamente, se buscó:
+
+- Identificar perfiles estudiantiles sin utilizar la variable objetivo.
+- Analizar si hábitos de estudio, sueño y factores mentales generan separaciones naturales.
+- Comparar diferentes algoritmos de clustering para evaluar estabilidad y calidad de los grupos.
+- Visualizar estos patrones utilizando reducción de dimensionalidad.
+
+---
+
+## 2. Preprocesamiento y Selección de Características
+
+Para esta fase, se trabajó únicamente sobre **variables numéricas**, ya que los algoritmos de clustering requieren espacios vectoriales formales.  
+Los pasos aplicados fueron:
+
+1. Eliminación de `student_id` y otras columnas irrelevantes.  
+2. Selección de características numéricas del dataset.  
+3. **Estandarización con `StandardScaler`** para ubicar todas las variables en la misma escala y evitar sesgos por magnitud.  
+4. Preparación de una matriz final (`X_scaled`) utilizada por todos los algoritmos.
+
+---
+
+## 3. Algoritmos de Clustering Utilizados
+
+Se implementaron tres de los métodos de agrupamiento más utilizados y complementarios entre sí:
+
+### 🔹 **3.1 K-Means Clustering**
+
+- Se utilizó el **Método del Codo (Elbow Method)** para estimar el número óptimo de clusters.
+- El modelo fue entrenado con el valor de k más adecuado según la forma de curva de inercia.
+- Se calculó el **Silhouette Score**, que mide la cohesión y separación entre grupos.
+
+Este enfoque permite descubrir agrupaciones compactas y bien definidas.
+
+---
+
+### 🔹 **3.2 DBSCAN**
+
+- Se aplicó `DBSCAN(eps=1, min_samples=5)`.
+- Identifica grupos basados en densidad, permitiendo detectar:
+  -En la practica del ejercicio detecto mayormente ruido.
+
+Es especialmente útil porque no requiere especificar el número de clusters y detecta ruido naturalmente.
+
+---
+
+### 🔹 **3.3 Agglomerative Clustering (Jerárquico)**
+
+- Permite modelar la estructura jerárquica de los datos y comparar cómo se agrupan los estudiantes desde niveles generales hasta segmentos específicos.
+
+Este método complementa a K-Means y DBSCAN al analizar cómo los grupos pueden formarse de manera ascendente a partir de pares de observaciones.
+
+---
+
+## 4. Evaluación de la Calidad del Clustering
+
+Para cada modelo se utilizó:
+
+- **Silhouette Score**, que indica qué tan bien separados están los clusters.  
+- Comparación entre métodos para evaluar consistencia de patrones.  
+
+Gracias a estas métricas se verificó que los grupos formados no eran aleatorios y reflejaban diferencias reales en hábitos diarios.
+
+---
+
+## 5. Reducción de Dimensionalidad para Visualización
+
+Dado que el dataset contiene múltiples variables, se aplicaron técnicas para proyectar los datos en 2 dimensiones y facilitar la interpretación visual.
+
+### 🔸 **PCA – Análisis de Componentes Principales**
+
+- Reduce la dimensionalidad preservando la mayor parte de la varianza.
+- Permite visualizar los clusters de manera lineal.
+
+
+### 🔸 **t-SNE – Proyección No Lineal**
+
+- Proyecta datos en 2D preservando relaciones locales.
+- Muestra agrupamientos complejos que no son visibles con PCA.
+
+
+
+
+
+
+
+
 
