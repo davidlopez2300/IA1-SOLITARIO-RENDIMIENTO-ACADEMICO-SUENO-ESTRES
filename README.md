@@ -122,7 +122,7 @@ Los pasos aplicados fueron:
 
 Se implementaron tres de los métodos de agrupamiento más utilizados y complementarios entre sí:
 
-### 🔹 **3.1 K-Means Clustering**
+###  **3.1 K-Means Clustering**
 
 - Se utilizó el **Método del Codo (Elbow Method)** para estimar el número óptimo de clusters.
 - El modelo fue entrenado con el valor de k más adecuado según la forma de curva de inercia.
@@ -132,7 +132,7 @@ Este enfoque permite descubrir agrupaciones compactas y bien definidas.
 
 ---
 
-### 🔹 **3.2 DBSCAN**
+###  **3.2 DBSCAN**
 
 - Se aplicó `DBSCAN(eps=1, min_samples=5)`.
 - Identifica grupos basados en densidad, permitiendo detectar:
@@ -142,7 +142,7 @@ Es especialmente útil porque no requiere especificar el número de clusters y d
 
 ---
 
-### 🔹 **3.3 Agglomerative Clustering (Jerárquico)**
+###  **3.3 Agglomerative Clustering (Jerárquico)**
 
 - Permite modelar la estructura jerárquica de los datos y comparar cómo se agrupan los estudiantes desde niveles generales hasta segmentos específicos.
 
@@ -165,13 +165,13 @@ Gracias a estas métricas se verificó que los grupos formados no eran aleatorio
 
 Dado que el dataset contiene múltiples variables, se aplicaron técnicas para proyectar los datos en 2 dimensiones y facilitar la interpretación visual.
 
-### 🔸 **PCA – Análisis de Componentes Principales**
+###  **PCA – Análisis de Componentes Principales**
 
 - Reduce la dimensionalidad preservando la mayor parte de la varianza.
 - Permite visualizar los clusters de manera lineal.
 
 
-### 🔸 **t-SNE – Proyección No Lineal**
+###  **t-SNE – Proyección No Lineal**
 
 - Proyecta datos en 2D preservando relaciones locales.
 - Muestra agrupamientos complejos que no son visibles con PCA.
