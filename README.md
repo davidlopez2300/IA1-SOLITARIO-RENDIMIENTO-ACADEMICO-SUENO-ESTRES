@@ -16,6 +16,8 @@
 ## Descripción de los Datos a Usar
 
 **Dataset Principal:** `student_habits_performance.csv`(https://www.kaggle.com/datasets/jayaantanaath/student-habits-vs-academic-performance?resource=download)
+
+
 **Video:**(https://youtu.be/0MBABNBxmKU)
 
 * **Variables Clave:** El conjunto de datos consta de **16 columnas** que incluyen variables cuantitativas (ej. `study_hours_per_day`, `sleep_hours`, `social_media_hours`) y variables categóricas u ordinales (ej. `diet_quality`, `part_time_job`).
